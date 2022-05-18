@@ -12,7 +12,7 @@ const EachTodo = (each) => {
     const todo = {
       title: title,
       userMail: user?.email,
-      complete: completed,
+      complete: false,
     };
     if (!user) {
       toast("Please login first");

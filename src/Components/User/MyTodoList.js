@@ -6,31 +6,26 @@ import LoadingPage from "../OthersPage/LoadingPage";
 
 const MyTodoList = () => {
   const [user, loading] = useAuthState(auth);
+  const [done, setDone] = useState(false);
   const [myTodo, setMyTodo] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:5000/todos/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setMyTodo(data));
-  }, [user]);
+  }, [user, myTodo]);
   if (loading) {
     return <LoadingPage></LoadingPage>;
   }
   const completeTask = (id) => {
-    const todo = {
-      completed: true,
-    };
     fetch(`http://localhost:5000/todo/${id}`, {
       method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(todo),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data.acknowledged === true) {
+          toast("Congrats! You have done a task.");
+        }
       });
-    toast("Congrats! You have done a task.");
   };
   const deleteTask = (id) => {
     fetch(`http://localhost:5000/delete/${id}`, {
@@ -60,13 +55,16 @@ const MyTodoList = () => {
           {myTodo.map((todo, index) => (
             <tr key={todo._id}>
               <th>{index + 1}</th>
-              <td>{todo.title}</td>
+              <td className={todo.complete && "text-success"}>{todo.title}</td>
               <td>
                 <button
+                  disabled={todo.complete}
                   onClick={() => completeTask(todo._id)}
-                  className="btn btn-xs bg-success"
+                  className={`btn btn-xs ${
+                    todo.complete ? "bg-slate-400" : "bg-success"
+                  }`}
                 >
-                  Complete
+                  {todo.complete === true ? "Completed" : "Complete"}
                 </button>
               </td>
               <td>
