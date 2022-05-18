@@ -15,7 +15,7 @@ const Navbar = () => {
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to="/todolist">My todo List</Link>
+        <Link to="/mytodo">My todo List</Link>
       </li>
       {user ? (
         <li>

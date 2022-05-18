@@ -5,6 +5,7 @@ import Login from "./Components/User/Login";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Register from "./Components/User/Register";
+import MyTodoList from "./Components/User/MyTodoList";
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/mytodo" element={<MyTodoList />}></Route>
         <Route path="/register" element={<Register />}></Route>
+        <Route path="*" element={<Register />}></Route>
       </Routes>
       <ToastContainer />
     </div>
