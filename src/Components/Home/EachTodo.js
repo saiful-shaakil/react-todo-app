@@ -1,14 +1,17 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../firebase.init";
 
 const EachTodo = (each) => {
   const [user, loading, error] = useAuthState(auth);
   const { title } = each.each;
+  const navigate = useNavigate();
   const addTask = () => {
     if (!user) {
-      toast("Login first");
+      toast("Please login first");
+      navigate("/login");
     }
   };
   return (
