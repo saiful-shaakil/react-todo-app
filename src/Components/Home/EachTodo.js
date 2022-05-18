@@ -6,12 +6,30 @@ import auth from "../firebase.init";
 
 const EachTodo = (each) => {
   const [user, loading, error] = useAuthState(auth);
-  const { title } = each.each;
+  const { title, completed } = each.each;
   const navigate = useNavigate();
   const addTask = () => {
+    const todo = {
+      title: title,
+      userMail: user?.email,
+      complete: completed,
+    };
     if (!user) {
       toast("Please login first");
       navigate("/login");
+    }
+    if (user) {
+      fetch("http://localhost:5000/addtodo", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(todo),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          toast("New task added to your list.");
+        });
     }
   };
   return (
