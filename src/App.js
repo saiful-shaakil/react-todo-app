@@ -4,6 +4,7 @@ import Navbar from "./Components/Home/Navbar";
 import Login from "./Components/User/Login";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Register from "./Components/User/Register";
 
 function App() {
   return (
@@ -11,12 +12,8 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home />}></Route>
-      </Routes>
-      <Routes>
-        <Route path="/todolist" element={<Home />}></Route>
-      </Routes>
-      <Routes>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/register" element={<Register />}></Route>
       </Routes>
       <ToastContainer />
     </div>
