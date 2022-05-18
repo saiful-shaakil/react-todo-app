@@ -5,8 +5,8 @@ import { toast } from "react-toastify";
 import auth from "../firebase.init";
 
 const EachTodo = (each) => {
-  const [user, loading, error] = useAuthState(auth);
-  const { title, completed } = each.each;
+  const [user] = useAuthState(auth);
+  const { title } = each.each;
   const navigate = useNavigate();
   const addTask = () => {
     const todo = {
