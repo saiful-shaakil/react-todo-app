@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Register from "./Components/User/Register";
 import MyTodoList from "./Components/User/MyTodoList";
+import RequireAuth from "./Components/OthersPage/RequireAuth";
 
 function App() {
   return (
@@ -14,7 +15,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/todos" element={<MyTodoList />}></Route>
+        <Route
+          path="/todos"
+          element={
+            <RequireAuth>
+              <MyTodoList />
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="*" element={<Register />}></Route>
       </Routes>

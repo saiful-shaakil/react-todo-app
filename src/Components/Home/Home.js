@@ -20,8 +20,7 @@ const Home = () => {
     let title = e.target.title.value;
     let desc = e.target.desc.value;
     if (!title || !desc) {
-      toast("Please login first");
-      navigate("/login");
+      toast("Please fill the form.");
     }
     if (title && desc) {
       const todo = {
@@ -35,7 +34,7 @@ const Home = () => {
         navigate("/login");
       }
       if (user) {
-        fetch("http://localhost:5000/addtodo", {
+        fetch("https://hidden-garden-32672.herokuapp.com/addtodo", {
           method: "POST",
           headers: {
             "content-type": "application/json",

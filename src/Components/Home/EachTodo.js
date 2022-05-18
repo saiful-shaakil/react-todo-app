@@ -19,7 +19,7 @@ const EachTodo = (each) => {
       navigate("/login");
     }
     if (user) {
-      fetch("http://localhost:5000/addtodo", {
+      fetch("https://hidden-garden-32672.herokuapp.com/addtodo", {
         method: "POST",
         headers: {
           "content-type": "application/json",
